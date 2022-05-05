@@ -17,7 +17,6 @@ wss.on("connection", (ws) => {
     var recieve = gdCom.getVar(Buffer.from(message)).value;
     if (recieve.header === pingheader) {
       // we got pinged
-      console.log("ping recieved");
       return; // stop
     } else if (recieve.header === chatheader) {
       console.log(recieve.value); // print the message
