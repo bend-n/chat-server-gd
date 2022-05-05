@@ -14,7 +14,7 @@ wss.on("connection", (ws) => {
 
   // on message recieved
   ws.on("message", (message) => {
-    var recieve = gdCom.getVar(Buffer.from(message));
+    var recieve = gdCom.getVar(Buffer.from(message)).value;
     if (recieve.header === pingheader) {
       // we got pinged
       console.log("ping recieved");
@@ -30,7 +30,6 @@ wss.on("connection", (ws) => {
     } else {
       console.log("unknown header: " + recieve.header);
       console.log(recieve);
-      console.log(recieve.value);
       return; // stop
     }
   });
