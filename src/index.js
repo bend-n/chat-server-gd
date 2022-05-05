@@ -27,6 +27,9 @@ wss.on("connection", (ws) => {
         client.send(gdCom.putVar(recieve)); // relay the message
       });
       return; // stop
+    } else {
+      console.log("unknown header");
+      return; // stop
     }
   });
 });
