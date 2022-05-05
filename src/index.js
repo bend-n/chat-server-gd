@@ -28,7 +28,9 @@ wss.on("connection", (ws) => {
       });
       return; // stop
     } else {
-      console.log("unknown header: " + recieve);
+      console.log("unknown header: " + recieve.header);
+      console.log(recieve);
+      console.log(recieve.value);
       return; // stop
     }
   });
