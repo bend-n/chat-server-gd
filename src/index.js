@@ -8,9 +8,9 @@ const wss = new WebSocket.Server({ port: PORT });
 const pingheader = "P";
 const chatheader = "C";
 
-console.log(`Server started on port ${PORT}`);
+console.log(`[gd-chat-server]: started on port ${PORT}`);
 wss.on("connection", (ws) => {
-  console.log("client connected");
+  console.log("[gd-chat-server]: client connected");
 
   // on message recieved
   ws.on("message", (message) => {
@@ -20,7 +20,7 @@ wss.on("connection", (ws) => {
       ws.send(gdCom.putVar({ header: pingheader }));
       return; // stop
     } else if (recieve.header === chatheader) {
-      console.log(`${recieve.who}:${recieve.text}`); // print the message
+      console.log(`[gd-chat-server]: ${recieve.who}:${recieve.text}`); // print the message
       wss.clients.forEach((client) => {
         // for every client
         if (client.readyState !== WebSocket.OPEN) return; // if were ready
@@ -28,8 +28,8 @@ wss.on("connection", (ws) => {
       });
       return; // stop
     } else {
-      console.log("unknown header: " + recieve.header);
-      console.log(recieve);
+      console.log(`[gd-chat-server]: unknown header ${recieve.header}`);
+      console.log(`[gd-chat-server]: ${recieve}`);
       return; // stop
     }
   });
