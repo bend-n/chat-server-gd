@@ -19,7 +19,7 @@ wss.on("connection", (ws) => {
       // we got pinged
       return; // stop
     } else if (recieve.header === chatheader) {
-      console.log(recieve.value); // print the message
+      console.log(`${recieve.who}:${recieve.text}`); // print the message
       wss.clients.forEach((client) => {
         // for every client
         if (client.readyState !== WebSocket.OPEN) return; // if were ready
